@@ -1,50 +1,85 @@
-import {Link, useHistory} from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 
-const NavBar = ({searchText, setSearchText}) => {
-
+const NavBar = ({ searchText, setSearchText }) => {
   const history = useHistory();
 
   const updateSearchText = (e) => {
-    //history.push('/search');
+    // history.push('/search');
     console.log(e.target.value);
     setSearchText(e.target.value);
-  }
-  const updateSearchTextButton = (e) => {
-    history.push('/search');
-    console.log(e.target.value);
-    setSearchText(e.target.value);
-  }
+  };
 
-    return(
-      <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  const updateSearchTextButton = (e) => {
+    e.preventDefault()
+    history.push("/search");
+    console.log(e.target.value, "button");
+    setSearchText(searchText);
+  };
+
+  return (
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">Movie Browser</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <Link className="navbar-brand" to="/">
+            Movie Browser
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                <Link className="nav-link active" aria-current="page" to="/">
+                  Home
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link>
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link disabled" to="#" tabIndex="-1" aria-disabled="true">Disabled</Link>
+                <Link
+                  className="nav-link disabled"
+                  to="#"
+                  tabIndex="-1"
+                  aria-disabled="true"
+                >
+                  Disabled
+                </Link>
               </li>
             </ul>
             <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value = {searchText} onChange={updateSearchText} formaction={updateSearchTextButton} />
-              <button className="btn btn-outline-success" type="button" onClick = {updateSearchTextButton}>Search</button>
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={searchText}
+                onChange={updateSearchText}
+              />
+              <button
+                className="btn btn-outline-success"
+                onClick={updateSearchTextButton}
+                type="submit"
+              >
+                Search
+              </button>
             </form>
           </div>
         </div>
       </nav>
-      </div>
-    )
-  }
+    </div>
+  );
+};
 
+export default NavBar;
 
-export default NavBar
